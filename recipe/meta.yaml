@@ -10,20 +10,22 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python >=3.6.1
+    - python {{ python_min }}
     - pip
     - poetry
   run:
-    - python >=3.6.1
+    - python >={{ python_min }}
     - allennlp >=2,<3
     - optuna >=2.6,<3
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - allennlp_optuna
 
